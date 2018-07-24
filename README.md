@@ -1,5 +1,5 @@
-=======
-# Author-Central
+# Author Central
+
 
 ## Getting Started
 npm install -g yarn
