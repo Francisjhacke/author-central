@@ -7,9 +7,10 @@
     "dev": "concurrently --kill-others-on-fail \"yarn server\" \"yarn client\""
   },
   "dependencies": {
+    "@types/react": "^16.4.7",
     "express": "^4.16.3"
   },
   "devDependencies": {
-  "concurrently": "^3.6.0"
+    "concurrently": "^3.6.0"
   }
 }
