@@ -2,7 +2,9 @@ import * as React from "react";
 import { Link } from "react-router-dom";
 import * as routes from "../constants/routes";
 import { AuthUserContext } from "../firebase/AuthUserContext";
-import { SignOutButton } from "./SignOutButton";
+import { auth } from "../firebase";
+// import { SignOutButton } from "./SignOutButton";
+import Button from "../components/Button";
 
 export const Navigation = () => (
   <AuthUserContext.Consumer>
@@ -22,7 +24,10 @@ const NavigationAuth = () => (
       <Link to={routes.ACCOUNT}>Account</Link>
     </li>
     <li>
-      <SignOutButton />
+      {/* <SignOutButton /> */}
+      <Button type={"primary"} callback={auth.doSignOut}>
+        Sign Out
+      </Button>
     </li>
   </ul>
 );
