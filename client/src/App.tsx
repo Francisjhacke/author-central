@@ -17,7 +17,8 @@ import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
 
 // Components
-import { Navigation } from "./components/Navigation";
+import MainNavigation from "./components/Navigation/MainNavigation";
+import SubNavigation from "./components/Navigation/SubNavigation";
 
 class AppComponent extends React.Component {
   constructor(props: any) {
@@ -40,20 +41,23 @@ class AppComponent extends React.Component {
     return (
       <BrowserRouter>
         <div>
-          <Navigation />
-          <hr />
-          <Switch>
-            <Route exact={true} path={routes.LANDING} component={Landing} />
-            <Route exact={true} path={routes.SIGN_UP} component={SignUp} />
-            <Route exact={true} path={routes.SIGN_IN} component={SignIn} />
-            <Route
-              exact={true}
-              path={routes.PASSWORD_FORGET}
-              component={PasswordForget}
-            />
-            <Route exact={true} path={routes.HOME} component={Home} />
-            <Route exact={true} path={routes.ACCOUNT} component={Account} />
-          </Switch>
+          <MainNavigation />
+          <SubNavigation />
+          <main role="main" className="container">
+            <Switch>
+              <Route exact={true} path={routes.LANDING} component={Landing} />
+              <Route exact={true} path={routes.SIGN_UP} component={SignUp} />
+              <Route exact={true} path={routes.SIGN_IN} component={SignIn} />
+              <Route
+                exact={true}
+                path={routes.PASSWORD_FORGET}
+                component={PasswordForget}
+              />
+              <Route exact={true} path={routes.HOME} component={Home} />
+              <Route exact={true} path={routes.ACCOUNT} component={Account} />
+            </Switch>
+          </main>
+          
         </div>
       </BrowserRouter>
     );
