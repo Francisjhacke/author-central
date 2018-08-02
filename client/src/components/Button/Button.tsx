@@ -2,7 +2,7 @@ import * as React from "react"
 
 export interface Props {
     children?: React.ReactNode
-    callback?: Function
+    callback?: any
     type?: String
 }
 
@@ -11,7 +11,7 @@ const Button = (props: Props) => {
         <button 
             type="button"
             className={`btn btn-$(props.type}`}
-            onClick={() => props.callback}
+            onClick={props.callback()}
         >
             {props.children}
         </button>
