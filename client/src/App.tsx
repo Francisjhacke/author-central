@@ -43,7 +43,7 @@ class AppComponent extends React.Component {
         <div>
           <MainNavigation />
           <SubNavigation />
-          <main role="main" className="container">
+          <main role="main" className="container ac-content-container">
             <Switch>
               <Route exact={true} path={routes.LANDING} component={Landing} />
               <Route exact={true} path={routes.SIGN_UP} component={SignUp} />
@@ -57,7 +57,6 @@ class AppComponent extends React.Component {
               <Route exact={true} path={routes.ACCOUNT} component={Account} />
             </Switch>
           </main>
-          
         </div>
       </BrowserRouter>
     );

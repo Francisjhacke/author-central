@@ -1,9 +1,11 @@
 import * as React from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import * as routes from "../../../constants/routes";
 import { AuthUserContext } from "../../../firebase/AuthUserContext";
 import { auth } from "../../../firebase";
 import Button from "../../Button";
+
+import "./MainNavigation.css";
 
 const MainNavigation = () => (
   <AuthUserContext.Consumer>
@@ -14,9 +16,9 @@ const MainNavigation = () => (
 const NavigationAuth = () => (
   <div>
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-      <Link className="navbar-brand mr-auto mr-lg-0" to={routes.LANDING}>
+      <NavLink activeClassName="active" className="navbar-brand ac-navbar-brand mr-auto mr-lg-0" to={routes.LANDING}>
         Author Central
-      </Link>
+      </NavLink>
       <button
         className="navbar-toggler p-0 border-0"
         type="button"
@@ -31,19 +33,9 @@ const NavigationAuth = () => (
       >
         <ul className="navbar-nav mr-auto">
           <li className="nav-item">
-            <Link className="nav-link" to={routes.ACCOUNT}>
+            <NavLink activeClassName="active" className="nav-link" to={routes.ACCOUNT}>
               Account
-            </Link>
-          </li>
-          {/* <li className="nav-item">
-            <Link className="nav-link" to={routes.HOME}>
-              Home
-            </Link>
-          </li> */}
-          <li className="nav-item">
-            <Button type={"primary"} callback={() => auth.doSignOut}>
-              Sign Out
-            </Button>
+            </NavLink>
           </li>
 
           <li className="nav-item dropdown">
@@ -70,20 +62,14 @@ const NavigationAuth = () => (
             </div>
           </li>
         </ul>
-        <form className="form-inline my-2 my-lg-0">
-          <input
-            className="form-control mr-sm-2"
-            type="text"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button
-            className="btn btn-outline-success my-2 my-sm-0"
-            type="submit"
-          >
-            Search
-          </button>
-        </form>
+
+        <ul className="navbar-nav my-2 my-lg-0">
+          <li className="nav-item">
+            <Button type={"primary"} callback={() => auth.doSignOut}>
+              Sign Out
+            </Button>
+          </li>
+        </ul>
       </div>
     </nav>
   </div>
@@ -92,9 +78,9 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <div>
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-      <Link className="navbar-brand mr-auto mr-lg-0" to={routes.LANDING}>
+      <NavLink activeClassName="active" className="navbar-brand ac-navbar-brand mr-auto mr-lg-0" to={routes.LANDING}>
         Author Central
-      </Link>
+      </NavLink>
       <button
         className="navbar-toggler p-0 border-0"
         type="button"
@@ -116,9 +102,9 @@ const NavigationNonAuth = () => (
         </ul>
         <ul className="navbar-nav my-2 my-lg-0">
           <li className="nav-item">
-            <Link className="nav-link" to={routes.SIGN_IN}>
+            <NavLink activeClassName="active" className="nav-link" to={routes.SIGN_IN}>
               Sign In
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </div>

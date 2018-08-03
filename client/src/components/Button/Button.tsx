@@ -1,4 +1,5 @@
 import * as React from "react"
+import "./Button.css";
 
 export interface Props {
     children?: React.ReactNode
@@ -10,7 +11,7 @@ const Button = (props: Props) => {
     return (
         <button 
             type="button"
-            className={`btn btn-$(props.type}`}
+            className={`btn ac-btn btn-$(props.type}`}
             onClick={props.callback()}
         >
             {props.children}
