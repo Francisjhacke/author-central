@@ -9,8 +9,6 @@ export const PasswordForget = () => (
   </div>
 );
 
-export const PasswordForgetLink = () => (
-  <p>
-    <Link to="/pw-forget">Forgot Password</Link>
-  </p>
+export const PasswordForgetLink = (props) => (
+    <Link to="/pw-forget" className={`${props.classes}`}>Forgot Password</Link>
 );

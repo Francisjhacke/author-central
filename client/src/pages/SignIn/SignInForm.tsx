@@ -1,6 +1,8 @@
 import * as React from "react";
 import * as routes from "../../constants/routes";
 import { auth } from "../../firebase";
+import { PasswordForgetLink } from "../PasswordForget";
+import "./SignInForm.css";
 
 interface InterfaceProps {
   email?: string;
@@ -60,21 +62,48 @@ export class SignInForm extends React.Component<
 
     return (
       <form onSubmit={event => this.onSubmit(event)}>
-        <input
-          value={email}
-          onChange={event => this.setStateWithEvent(event, "email")}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={password}
-          onChange={event => this.setStateWithEvent(event, "password")}
-          type="password"
-          placeholder="Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign In
-        </button>
+        <div className="form-group">
+          <label htmlFor="inputEmail">Email address</label>
+          <input
+            className="form-control"
+            value={email}
+            onChange={event => this.setStateWithEvent(event, "email")}
+            type="text"
+            required={true}
+            autoFocus
+            id="inputEmail"
+            placeholder="Email Address"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="inputPassword">
+            Password
+            <PasswordForgetLink classes="float-right" />
+          </label>
+          <input
+            className="form-control"
+            value={password}
+            onChange={event => this.setStateWithEvent(event, "password")}
+            type="password"
+            placeholder="Password"
+            id="inputPassword"
+            required={true}
+          />
+        </div>
+        <div className="form-group">
+          <label>
+            <input type="checkbox" value="remember-me" /> Remember me
+          </label>
+        </div>
+        <div className="form-group no-margin">
+          <button
+            className="btn btn-primary btn-block"
+            disabled={isInvalid}
+            type="submit"
+          >
+            Sign In
+          </button>
+        </div>
 
         {error && <p>{error.message}</p>}
       </form>

@@ -10,8 +10,8 @@ const SignUpComponent = () => (
   </div>
 );
 
-export const SignUpLink = () => (
-  <p>
+export const SignUpLink = (props) => (
+  <p className={`${props.classes}`}>
     Don't have an account? <Link to={routes.SIGN_UP}>Sign Up</Link>
   </p>
 );
