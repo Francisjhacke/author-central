@@ -2,7 +2,7 @@ import * as React from "react";
 import * as routes from "../../constants/routes";
 import { auth, db } from "../../firebase";
 
-interface InterfaceProps {
+interface Props {
   email?: string;
   error?: any;
   history?: any;
@@ -11,7 +11,7 @@ interface InterfaceProps {
   username?: string;
 }
 
-interface InterfaceState {
+interface State {
   email: string;
   error: any;
   passwordOne: string;
@@ -19,10 +19,7 @@ interface InterfaceState {
   username: string;
 }
 
-export class SignUpForm extends React.Component<
-  InterfaceProps,
-  InterfaceState
-> {
+export class SignUpForm extends React.Component<Props, State> {
   private static INITIAL_STATE = {
     email: "",
     error: null,
@@ -35,7 +32,7 @@ export class SignUpForm extends React.Component<
     return { [propertyName]: value };
   }
 
-  constructor(props: InterfaceProps) {
+  constructor(props: Props) {
     super(props);
     this.state = { ...SignUpForm.INITIAL_STATE };
   }
@@ -49,17 +46,20 @@ export class SignUpForm extends React.Component<
     auth
       .doCreateUserWithEmailAndPassword(email, passwordOne)
       .then((authUser: any) => {
-
-        // Create a user in your own accessible Firebase Database too
-        db.doCreateUser(authUser.user.uid, username, email)
-          .then(() => {
-
-            this.setState(() => ({ ...SignUpForm.INITIAL_STATE }));
-            history.push(routes.HOME);
-          })
-          .catch(error => {
-            this.setState(SignUpForm.propKey("error", error));
-          });
+        const userDetails = authUser;
+        auth.doSignInWithEmailAndPassword(email, passwordOne).then((res) => { // Sign in the new user before writing to the database (Firebase authentication solution)
+          // Create a user in your own accessible Firebase Database too
+          console.log(res);
+          db.fsCreateUser(userDetails.user.uid, username, email)
+            .then(() => {
+              this.setState(() => ({ ...SignUpForm.INITIAL_STATE }));
+              history.push(routes.HOME);
+            })
+            .catch(error => {
+              console.log(error);
+              this.setState(SignUpForm.propKey("error", error));
+            });
+        });
       })
       .catch(error => {
         this.setState(SignUpForm.propKey("error", error));
@@ -76,36 +76,69 @@ export class SignUpForm extends React.Component<
       username === "";
 
     return (
-      <form onSubmit={(event) => this.onSubmit(event)}>
-        <input
-          value={username}
-          onChange={event => this.setStateWithEvent(event, "username")}
-          type="text"
-          placeholder="Full Name"
-        />
-        <input
-          value={email}
-          onChange={event => this.setStateWithEvent(event, "email")}
-          type="text"
-          placeholder="Email Address"
-        />
-        <input
-          value={passwordOne}
-          onChange={event => this.setStateWithEvent(event, "passwordOne")}
-          type="password"
-          placeholder="Password"
-        />
-        <input
-          value={passwordTwo}
-          onChange={event => this.setStateWithEvent(event, "passwordTwo")}
-          type="password"
-          placeholder="Confirm Password"
-        />
-        <button disabled={isInvalid} type="submit">
-          Sign Up
-        </button>
+      <form onSubmit={event => this.onSubmit(event)}>
+        <div className="form-group">
+          <label htmlFor="inputUsername">Full Name</label>
+          <input
+            className="form-control"
+            value={username}
+            onChange={event => this.setStateWithEvent(event, "username")}
+            type="text"
+            required={true}
+            autoFocus
+            id="inputUsername"
+            placeholder="Full Name"
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="inputEmail">Email Address</label>
+          <input
+            className="form-control"
+            value={email}
+            onChange={event => this.setStateWithEvent(event, "email")}
+            type="text"
+            placeholder="Email Address"
+            id="inputEmail"
+            required={true}
+          />
+        </div>
+        <div className="form-group">
+          <label htmlFor="inputPasswordOne">Password</label>
+          <input
+            className="form-control"
+            value={passwordOne}
+            onChange={event => this.setStateWithEvent(event, "passwordOne")}
+            type="password"
+            placeholder="Password"
+            id="inputPasswordOne"
+            required={true}
+          />
+        </div>
 
-        {error && <p>{error.message}</p>}
+        <div className="form-group">
+          <label htmlFor="inputPassword">Confirm Password</label>
+          <input
+            className="form-control"
+            value={passwordTwo}
+            onChange={event => this.setStateWithEvent(event, "passwordTwo")}
+            type="password"
+            placeholder="Confirm Password"
+            id="inputPasswordTwo"
+            required={true}
+          />
+        </div>
+
+        <div className="form-group no-margin">
+          <button
+            className="btn btn-primary btn-block"
+            disabled={isInvalid}
+            type="submit"
+          >
+            Sign Up
+          </button>
+        </div>
+
+        {error && <p className="center">{error.message}</p>}
       </form>
     );
   }

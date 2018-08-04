@@ -13,9 +13,9 @@ class HomeComponent extends React.Component {
   }
 
   public componentDidMount() {
-    db.onceGetUsers().then((snapshot: any) =>
-      this.setState(() => ({ users: snapshot.val() }))
-    );
+    db.fsGetUsers().then((snapshot: any) => {
+      this.setState(() => ({ users: snapshot }))
+    });
   }
 
   public render() {

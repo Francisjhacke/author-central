@@ -4,9 +4,21 @@ import * as routes from "../../constants/routes";
 import { SignUpForm } from "./SignUpForm";
 
 const SignUpComponent = () => (
-  <div>
-    <h1>SignUp</h1>
-    <SignUpForm />
+  <div className="my-login-page">
+    <section className="h-100">
+      <div className="container h-100">
+        <div className="row justify-content-md-center h-100">
+          <div className="card-wrapper">
+            <div className="card fat">
+              <div className="card-body">
+                <h2 className="card-title">Sign Up for Author Central</h2>
+                <SignUpForm />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </div>
 );
 

@@ -11,16 +11,18 @@ export class UserList extends React.Component<InterfaceProps, {}> {
 
   public render() {
     const { users }: any = this.props;
-
+     const list = [];
+    users.forEach(doc => {
+      list.push(<li key={doc.id}>{doc.data().username}</li>)
+    })
+    console.log(list);
     return (
       <div>
         <h2>List of User name</h2>
-        <p>(Saved on Sign Up in Firebase Database)</p>
+        <p>(Saved on Sign Up in Firebase Firestore)</p>
 
         <ul>
-          {Object.keys(users).map(key => {
-            return <li key={key}>{users[key].username}</li>;
-          })}
+          {list}
         </ul>
       </div>
     );
