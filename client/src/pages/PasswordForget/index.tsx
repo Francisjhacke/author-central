@@ -10,5 +10,5 @@ export const PasswordForget = () => (
 );
 
 export const PasswordForgetLink = (props) => (
-    <Link to="/pw-forget" className={`${props.classes}`}>Forgot Password</Link>
+    <Link to="/pw-forget" className={`${props.classes}`}>Forgot Password?</Link>
 );

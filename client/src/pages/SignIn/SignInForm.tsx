@@ -90,11 +90,6 @@ export class SignInForm extends React.Component<
             required={true}
           />
         </div>
-        <div className="form-group">
-          <label>
-            <input type="checkbox" value="remember-me" /> Remember me
-          </label>
-        </div>
         <div className="form-group no-margin">
           <button
             className="btn btn-primary btn-block"
@@ -105,7 +100,7 @@ export class SignInForm extends React.Component<
           </button>
         </div>
 
-        {error && <p>{error.message}</p>}
+        {error && <p className="center">Incorrect Username or Password.</p>}
       </form>
     );
   }

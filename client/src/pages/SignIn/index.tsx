@@ -12,7 +12,7 @@ const SignInComponent = ({ history }: { [key: string]: any }) => (
           <div className="card-wrapper">
             <div className="card fat">
               <div className="card-body">
-                <h1 className="card-title">Login</h1>
+                <h2 className="card-title">Sign In to Author Central</h2>
                 <SignInForm history={history} />
 
                 <div className="margin-top20 text-center">
