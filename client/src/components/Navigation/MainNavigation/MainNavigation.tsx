@@ -32,35 +32,8 @@ const NavigationAuth = () => (
         id="navbarsExampleDefault"
       >
         <ul className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <NavLink activeClassName="active" className="nav-link" to={routes.ACCOUNT}>
-              Account
-            </NavLink>
-          </li>
-
-          <li className="nav-item dropdown">
-            <a
-              className="nav-link dropdown-toggle"
-              href="https://example.com"
-              id="dropdown01"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Settings
-            </a>
-            <div className="dropdown-menu" aria-labelledby="dropdown01">
-              <a className="dropdown-item" href="#">
-                Action
-              </a>
-              <a className="dropdown-item" href="#">
-                Another action
-              </a>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
-            </div>
-          </li>
+            <a className="nav-link" href="#">Explore</a>
+            <a className="nav-link" href="#">Suggestions</a>
         </ul>
 
         <ul className="navbar-nav my-2 my-lg-0">
@@ -78,7 +51,11 @@ const NavigationAuth = () => (
 const NavigationNonAuth = () => (
   <div>
     <nav className="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
-      <NavLink activeClassName="active" className="navbar-brand ac-navbar-brand mr-auto mr-lg-0" to={routes.LANDING}>
+      <NavLink 
+        activeClassName="active" 
+        className="navbar-brand ac-navbar-brand mr-auto mr-lg-0" 
+        to={routes.LANDING}
+      >
         Author Central
       </NavLink>
       <button
@@ -91,15 +68,9 @@ const NavigationNonAuth = () => (
 
       <div
         className="navbar-collapse offcanvas-collapse"
-        id="navbarsExampleDefault"
+        id="mainNavMenu"
       >
-        <ul className="navbar-nav mr-auto">
-          {/* <li className="nav-item active">
-            <Link className="nav-link" to={routes.LANDING}>
-              Landing
-            </Link>
-          </li> */}
-        </ul>
+        <ul className="navbar-nav mr-auto"></ul>
         <ul className="navbar-nav my-2 my-lg-0">
           <li className="nav-item">
             <NavLink activeClassName="active" className="nav-link" to={routes.SIGN_IN}>

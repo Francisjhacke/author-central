@@ -18,9 +18,8 @@ export class UserList extends React.Component<InterfaceProps, {}> {
     console.log(list);
     return (
       <div>
-        <h2>List of User name</h2>
+        <h2>List of User names</h2>
         <p>(Saved on Sign Up in Firebase Firestore)</p>
-
         <ul>
           {list}
         </ul>
