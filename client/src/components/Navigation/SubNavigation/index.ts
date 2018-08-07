@@ -1,1 +1,1 @@
-export { default } from "./SubNavigation"
+export { SubNavigation } from "./SubNavigation"

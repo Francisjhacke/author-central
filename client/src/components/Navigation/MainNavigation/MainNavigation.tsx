@@ -7,7 +7,7 @@ import Button from "../../Button";
 
 import "./MainNavigation.css";
 
-const MainNavigation = () => (
+export const MainNavigation = () => (
   <AuthUserContext.Consumer>
     {authUser => (authUser ? <NavigationAuth /> : <NavigationNonAuth />)}
   </AuthUserContext.Consumer>

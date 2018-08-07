@@ -4,7 +4,7 @@ import * as routes from "../../../constants/routes";
 import { AuthUserContext } from "../../../firebase/AuthUserContext";
 import "./SubNavigation.css";
 
-const SubNavigation = () => (
+export const SubNavigation = () => (
   <AuthUserContext.Consumer>
     {authUser => (authUser ? <NavigationAuth /> : null)}
   </AuthUserContext.Consumer>

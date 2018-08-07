@@ -15,10 +15,10 @@ import { Landing } from "./pages/Landing";
 import { PasswordForget } from "./pages/PasswordForget";
 import { SignIn } from "./pages/SignIn";
 import { SignUp } from "./pages/SignUp";
+import { Dashboard } from "./pages/Dashboard";
 
 // Components
-import MainNavigation from "./components/Navigation/MainNavigation";
-import SubNavigation from "./components/Navigation/SubNavigation";
+import { MainLayout, EmptyLayout } from "./components/Layout";
 
 class AppComponent extends React.Component {
   constructor(props: any) {
@@ -40,27 +40,26 @@ class AppComponent extends React.Component {
   public render() {
     return (
       <BrowserRouter>
-        <div>
-          <MainNavigation />
-          <SubNavigation />
-          <main role="main" className="container ac-content-container">
-            <Switch>
-              <Route exact={true} path={routes.LANDING} component={Landing} />
-              <Route exact={true} path={routes.SIGN_UP} component={SignUp} />
-              <Route exact={true} path={routes.SIGN_IN} component={SignIn} />
-              <Route
-                exact={true}
-                path={routes.PASSWORD_FORGET}
-                component={PasswordForget}
-              />
-              <Route exact={true} path={routes.HOME} component={Home} />
-              <Route exact={true} path={routes.ACCOUNT} component={Account} />
-            </Switch>
-          </main>
-        </div>
+        <Switch>
+          <AppRoute exact={true} path={routes.SIGN_UP} component={SignUp} layout={EmptyLayout} />
+          <AppRoute exact={true} path={routes.SIGN_IN} component={SignIn} layout={EmptyLayout} />
+          <AppRoute exact={true} path={routes.LANDING} component={Landing} layout={MainLayout} />
+          <AppRoute exact={true} path={routes.PASSWORD_FORGET} component={PasswordForget} layout={MainLayout} />
+          <AppRoute exact={true} path={routes.HOME} component={Home} layout={MainLayout} />
+          <AppRoute exact={true} path={routes.ACCOUNT} component={Account} layout={MainLayout} />
+          <AppRoute exact={true} path={routes.DASHBOARD} component={Dashboard} layout={MainLayout} />
+        </Switch>
       </BrowserRouter>
     );
   }
 }
+
+const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
+  <Route {...rest} render={props => (
+    <Layout>
+      <Component {...props} />
+    </Layout>
+  )} />
+)
 
 export const App = withAuthentication(AppComponent);

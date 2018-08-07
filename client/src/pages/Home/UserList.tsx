@@ -11,11 +11,10 @@ export class UserList extends React.Component<InterfaceProps, {}> {
 
   public render() {
     const { users }: any = this.props;
-     const list = [];
+    const list = [];
     users.forEach(doc => {
       list.push(<li key={doc.id}>{doc.data().username}</li>)
     })
-    console.log(list);
     return (
       <div>
         <h2>List of User names</h2>

@@ -48,8 +48,7 @@ export class SignUpForm extends React.Component<Props, State> {
       .then((authUser: any) => {
         const userDetails = authUser;
         auth.doSignInWithEmailAndPassword(email, passwordOne).then((res) => { // Sign in the new user before writing to the database (Firebase authentication solution)
-          // Create a user in your own accessible Firebase Database too
-          console.log(res);
+          // Create a user in our own accessible Firebase Firestore too
           db.fsCreateUser(userDetails.user.uid, username, email)
             .then(() => {
               this.setState(() => ({ ...SignUpForm.INITIAL_STATE }));
