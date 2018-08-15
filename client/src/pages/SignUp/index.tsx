@@ -3,7 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import * as routes from "../../constants/routes";
 import { SignUpForm } from "./SignUpForm";
 
-const SignUpComponent = () => (
+const SignUpComponent = ({ history }: { [key: string]: any }) => (
   <div className="my-login-page">
     <section className="h-100">
       <div className="container h-100">
@@ -12,7 +12,7 @@ const SignUpComponent = () => (
             <div className="card fat">
               <div className="card-body">
                 <h2 className="card-title">Sign Up for Author Central</h2>
-                <SignUpForm />
+                <SignUpForm history={history}/>
               </div>
             </div>
           </div>
