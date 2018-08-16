@@ -12,8 +12,7 @@ export class EmptyLayout extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props)
 
-        this.state = {
-        }
+        this.state = {}
     }
 
     render() {
